@@ -21,13 +21,11 @@ jobs:
     - run: nix flake check --print-build-logs
     - name: Check sbt-nix template
       run: |
-        pushd
-
         mkdir testing
         cd testing
         nix flake init --template ../.#sbt-nix
         git add --all
         nix flake check --print-build-logs
 
-        popd
+        cd -
         rm -rf testing

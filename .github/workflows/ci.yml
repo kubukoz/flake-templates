@@ -19,3 +19,9 @@ jobs:
         name: kubukoz
         authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
     - run: nix flake check --print-build-logs
+    - name: Check sbt-nix template
+      run: |
+        mkdir testing
+        cd testing
+        nix flake init --template ../.#sbt-nix
+        nix flake check --print-build-logs

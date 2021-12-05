@@ -26,6 +26,7 @@ jobs:
           mkdir testing-$template
           cd testing-$template
           nix flake init --template ../.#$template
+          git init
           git add --all
           nix flake check --print-build-logs
 

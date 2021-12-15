@@ -9,6 +9,14 @@ sbt.mkDerivation rec {
     sbt Test/compile
   '';
 
+  overrideDepsAttrs = _: {
+    src = lib.sourceByRegex (gitignore-source.lib.gitignoreSource ./.) [
+      "^project\$"
+      "^project/.*\$"
+      "^build.sbt\$"
+    ];
+  };
+
   nativeBuildInputs = [ makeWrapper ];
 
   src = lib.sourceByRegex (gitignore-source.lib.gitignoreSource ./.) [
